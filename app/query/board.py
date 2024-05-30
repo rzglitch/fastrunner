@@ -14,7 +14,7 @@ class BoardQuery:
 
     @staticmethod
     def get_board_entries(id, entry_offset, entry_limit):
-        db.session.execute(
+        return db.session.execute(
             select(Entry).
             where(
                 Entry.parent == id

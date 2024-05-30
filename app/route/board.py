@@ -7,7 +7,7 @@ bp = Blueprint('board', __name__)
 
 @bp.route('/<string:name>')
 def board_entries(name):
-    entries = BoardService.get_entry_list(name)
+    entries = BoardService.get_entry_list(name, 0)
     return render_template('board/get_entries.html', entries=entries)
 
 

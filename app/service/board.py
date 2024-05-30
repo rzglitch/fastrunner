@@ -3,7 +3,7 @@ from app.query.board import BoardQuery
 
 class BoardService:
     @staticmethod
-    def get_entry_list(name, page=1, search=None):
+    def get_entry_list(name, entry_offset, search=None):
         # Search
         if search:
             return
@@ -13,7 +13,6 @@ class BoardService:
 
         if find_board:
             entry_limit = 20
-            entry_offset = entry_limit * page
 
             # Get list by board id
             list_entries = BoardQuery.get_board_entries(
