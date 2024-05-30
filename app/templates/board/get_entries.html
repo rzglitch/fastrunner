@@ -1,0 +1,63 @@
+{% extends "/_base.html" %}
+
+{% block content %}
+<div class="w-100 ph2 ph5-ns bb bt b--black-10 mb4">
+    <a
+        class="f4 fw6 b dib ma0 mr3 mt4 mb2 hover-blue link black-70 ttc"
+        href="#">Your List</a>
+</div>
+<div class="w-100 ph2 ph5-ns">
+    <div class="row">
+        <div class="col-md-6">
+            {% if not entries.boardInfo %}
+            Board not found
+            {% else %}
+            <table class="w-100 collapse bt bb br2 b--black-10 pv2 ph3 mt4">
+                <colgroup>
+                    <col style="width:5%">
+                    <col>
+                    <col style="width:5%">
+                    <col style="width:20%">
+                </colgroup>
+                <tbody>
+                    <tr class="striped--near-white ">
+                        <th class="pv2 ph3 tl f6 fw6 ttu">Id</th>
+                        <th class="pv2 ph3 tl f6 fw6 ttu">Title</th>
+                        <th class="tl f6 ttu fw6 pv2 ph3">Description</th>
+                        <th class="tl f6 ttu fw6 pv2 ph3">Operations</th>
+                    </tr>
+                    {% for entry in entries.boardList %}
+                    <tr class="striped--near-white ">
+                        <td class="pv2 ph3">{{ entry.id }}</td>
+                        <td class="pv2 ph3"><strong>{{ entry.title
+                                }}</strong></td>
+                        <td class="pv2 ph3">{{ entry.content }}</td>
+                        <td class="pv2 ph3">
+                            <a
+                                class="{{ 'btn btn-success' if entry.status else 'btn btn-dark'}} f6 link dim br1 ba ph3 pv2 mb2 dib mid-gray"
+                                href="/turn/{{ entry.id }}">
+                                Turn Status
+                            </a>
+                            <a
+                                class="f6 link dim br1 ba ph3 pv2 mb2 dib mid-gray"
+                                href="/delete/{{ entry.id }}">
+                                Delete
+                            </a>
+                            <a
+                                class="f6 link dim br1 ba ph3 pv2 mb2 dib mid-gray"
+                                href="/update/{{ entry.id }}">
+                                Edit
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+
+            </table>
+            {% endif %}
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
