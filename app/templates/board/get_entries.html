@@ -2,14 +2,26 @@
 
 {% block content %}
 <div class="w-100 ph2 ph5-ns bb bt b--black-10 mb4">
+    {% if not entries.board_info %}
     <a
-        class="f4 fw6 b dib ma0 mr3 mt4 mb2 hover-blue link black-70 ttc"
-        href="#">Your List</a>
+        class="f4 fw6 b dib ma0 mr3 mt4 mb2 hover-blue link black-70"
+        href="#">Board</a>
+    {% else %}
+    <a
+        class="f4 fw6 b dib ma0 mr3 mt4 mb2 hover-blue link black-70"
+        href="#">{{ entries.board_info.display_name }}</a>
+    <a
+        class="f6 link dim br-pill ba ph3 pv2 mb2 dib black"
+        href="/board/{{ entries.board_info.name }}/add">Write</a>
+    <p>
+        {{ entries.board_info.description }}
+    </p>
+    {% endif %}
 </div>
 <div class="w-100 ph2 ph5-ns">
     <div class="row">
         <div class="col-md-6">
-            {% if not entries.boardInfo %}
+            {% if not entries.board_info %}
             Board not found
             {% else %}
             <table class="w-100 collapse bt bb br2 b--black-10 pv2 ph3 mt4">

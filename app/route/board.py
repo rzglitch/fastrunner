@@ -1,8 +1,24 @@
-from flask import render_template, Blueprint
+from flask import render_template, Blueprint, request
 
 from app.service.board import BoardService
+from app.form.board import (
+    CreateBoardForm
+)
 
 bp = Blueprint('board', __name__)
+
+
+@bp.route('/create')
+def board_create():
+    form = CreateBoardForm()
+    return render_template('board/create_board.html', form=form)
+
+
+@bp.route('/create', methods=['POST'])
+def board_create_post():
+    form = CreateBoardForm()
+    add_board = BoardService.add_board(form)
+    return str(add_board)
 
 
 @bp.route('/<string:name>')
@@ -18,27 +34,5 @@ def board_add_entry(name):
 
 @bp.route('/<string:name>/add', methods=['POST'])
 def board_add_entry_post(name):
-
-    return None
-
-
-@bp.route('/update/<int:id>')
-def update_entry(id):
-    return render_template('board/update_entry.html')
-
-
-@bp.route('/update/<int:id>', methods=['POST'])
-def update_entry_post(id):
-
-    return None
-
-
-@bp.route('/delete/<int:id>')
-def delete_entry(id):
-    return render_template('board/delete_entry.html')
-
-
-@bp.route('/delete/<int:id>', methods=['POST'])
-def delete_entry_post(id):
 
     return None
