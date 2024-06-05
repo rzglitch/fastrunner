@@ -38,7 +38,7 @@
                         <th class="tl f6 ttu fw6 pv2 ph3">Description</th>
                         <th class="tl f6 ttu fw6 pv2 ph3">Operations</th>
                     </tr>
-                    {% for entry in entries.boardList %}
+                    {% for entry in entries.board_list %}
                     <tr class="striped--near-white ">
                         <td class="pv2 ph3">{{ entry.id }}</td>
                         <td class="pv2 ph3"><strong>{{ entry.title
@@ -46,18 +46,13 @@
                         <td class="pv2 ph3">{{ entry.content }}</td>
                         <td class="pv2 ph3">
                             <a
-                                class="{{ 'btn btn-success' if entry.status else 'btn btn-dark'}} f6 link dim br1 ba ph3 pv2 mb2 dib mid-gray"
-                                href="/turn/{{ entry.id }}">
-                                Turn Status
-                            </a>
-                            <a
                                 class="f6 link dim br1 ba ph3 pv2 mb2 dib mid-gray"
-                                href="/delete/{{ entry.id }}">
+                                href="/entry/delete/{{ entry.id }}">
                                 Delete
                             </a>
                             <a
                                 class="f6 link dim br1 ba ph3 pv2 mb2 dib mid-gray"
-                                href="/update/{{ entry.id }}">
+                                href="/entry/update/{{ entry.id }}">
                                 Edit
                             </a>
                         </td>

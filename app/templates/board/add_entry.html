@@ -1,0 +1,38 @@
+{% extends "/_base.html" %}
+
+{% block content %}
+<div class="w-100 ph2 ph5-ns bb bt b--black-10 mb4">
+    <a
+        class="f4 fw6 b dib ma0 mr3 mt4 mb2 hover-blue link black-70"
+        href="#">Add Entry ({{ name }})</a>
+</div>
+<form method="post" action="/entry/add" class="w-100 ph2 ph5-ns pa4 black-80">
+    {{ form.csrf_token }}
+    {{ form.board_name(value=name) }}
+    <div class="measure">
+        {% set attr = {
+        'class': 'input-reset ba b--black-20 pa2 mb2 db w-100'
+        } %}
+        {{ form.title.label(class='f6 b db mb2') }}
+        {{ form.title(**attr) }}
+    </div>
+    <div class="measure">
+        {% set attr = {
+        'class': 'input-reset ba b--black-20 pa2 mb2 db w-100 h5'
+        } %}
+        {{ form.content.label(class='f6 b db mb2') }}
+        {{ form.content(**attr) }}
+    </div>
+    <div class="measure">
+        {% set attr = {
+        'class': 'input-reset ba b--black-20 pa2 mb2 db w-100 h4'
+        } %}
+        {{ form.entry_metadata.label(class='f6 b db mb2') }}
+        {{ form.entry_metadata(**attr) }}
+    </div>
+    <div>
+        <button type="submit"
+            class="f6 link dim br-pill ba ph3 pv2 mb2 dib black">Create</button>
+    </div>
+</form>
+{% endblock %}

@@ -37,7 +37,7 @@ class BoardQuery:
             select(Entry).
             where(
                 Entry.parent == board_id
-                and Entry.status is True
+                and Entry.deleted is False
                 and Entry.id >= entry_offset
             ).
             order_by(Entry.id.desc()).

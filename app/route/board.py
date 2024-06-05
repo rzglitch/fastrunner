@@ -1,9 +1,8 @@
 from flask import render_template, Blueprint, request
 
 from app.service.board import BoardService
-from app.form.board import (
-    CreateBoardForm
-)
+from app.form.board import CreateBoardForm
+from app.form.entry import AddEntryForm
 
 bp = Blueprint('board', __name__)
 
@@ -29,10 +28,6 @@ def board_entries(name):
 
 @bp.route('/<string:name>/add')
 def board_add_entry(name):
-    return render_template('board/add_entry.html')
-
-
-@bp.route('/<string:name>/add', methods=['POST'])
-def board_add_entry_post(name):
-
-    return None
+    form = AddEntryForm()
+    return render_template('board/add_entry.html',
+                           form=form, name=name)
