@@ -1,5 +1,5 @@
 import uuid
-from app.query.board import BoardQuery
+from app.query.BoardQuery import BoardQuery
 
 
 class BoardService:

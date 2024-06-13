@@ -1,8 +1,9 @@
 from flask import render_template, Blueprint, request
 
-from app.service.board import BoardService
-from app.form.board import CreateBoardForm
-from app.form.entry import AddEntryForm
+from app.service.BoardService import BoardService
+from app.service.EntryService import EntryService
+from app.form.BoardForm import CreateBoardForm
+from app.form.EntryForm import AddEntryForm
 
 bp = Blueprint('board', __name__)
 

@@ -22,6 +22,16 @@ class BoardQuery:
         db.session.close()
 
     @staticmethod
+    def get_board(id):
+        query = db.session.scalars(
+            select(Board).
+            filter_by(id=id).
+            limit(1)
+        ).first()
+        db.session.close()
+        return query
+
+    @staticmethod
     def get_board_by_name(name):
         query = db.session.scalars(
             select(Board).

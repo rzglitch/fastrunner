@@ -28,31 +28,32 @@
                 <colgroup>
                     <col style="width:5%">
                     <col>
-                    <col style="width:5%">
                     <col style="width:20%">
                 </colgroup>
                 <tbody>
                     <tr class="striped--near-white ">
                         <th class="pv2 ph3 tl f6 fw6 ttu">Id</th>
                         <th class="pv2 ph3 tl f6 fw6 ttu">Title</th>
-                        <th class="tl f6 ttu fw6 pv2 ph3">Description</th>
                         <th class="tl f6 ttu fw6 pv2 ph3">Operations</th>
                     </tr>
                     {% for entry in entries.board_list %}
                     <tr class="striped--near-white ">
                         <td class="pv2 ph3">{{ entry.id }}</td>
-                        <td class="pv2 ph3"><strong>{{ entry.title
-                                }}</strong></td>
-                        <td class="pv2 ph3">{{ entry.content }}</td>
+                        <td class="pv2 ph3">
+                            <a
+                                href="/entry/{{ entry.uuid }}">
+                                <strong>{{ entry.title }}</strong>
+                            </a>
+                        </td>
                         <td class="pv2 ph3">
                             <a
                                 class="f6 link dim br1 ba ph3 pv2 mb2 dib mid-gray"
-                                href="/entry/delete/{{ entry.id }}">
+                                href="/entry/delete/{{ entry.uuid }}">
                                 Delete
                             </a>
                             <a
                                 class="f6 link dim br1 ba ph3 pv2 mb2 dib mid-gray"
-                                href="/entry/update/{{ entry.id }}">
+                                href="/entry/update/{{ entry.uuid }}">
                                 Edit
                             </a>
                         </td>
