@@ -1,7 +1,6 @@
-from flask import render_template, Blueprint, request
+from flask import render_template, Blueprint, jsonify
 
 from app.service.BoardService import BoardService
-from app.service.EntryService import EntryService
 from app.form.BoardForm import CreateBoardForm
 from app.form.EntryForm import AddEntryForm
 
@@ -14,11 +13,15 @@ def board_create():
     return render_template('board/create_board.html', form=form)
 
 
-@bp.route('/create', methods=['POST'])
-def board_create_post():
+@bp.route('/create', methods=['POST', 'PUT'])
+def board_create_put():
     form = CreateBoardForm()
     add_board = BoardService.add_board(form)
-    return str(add_board)
+
+    if 'error' in add_board and add_board['error']:
+        return jsonify(add_board), 400
+    else:
+        return jsonify(add_board), 200
 
 
 @bp.route('/<string:name>')
